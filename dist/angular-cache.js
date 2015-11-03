@@ -9,7 +9,11 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("angular"));
+		if (typeof angular === 'undefined') {
+			module.exports = factory(require("angular"));
+		} else {
+			module.exports = factory(angular);
+		}
 	else if(typeof define === 'function' && define.amd)
 		define("angular-cache", ["angular"], factory);
 	else if(typeof exports === 'object')
